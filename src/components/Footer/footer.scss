@@ -1,0 +1,39 @@
+@import '../abstrack';
+
+.footer-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    @include media(small){
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+
+    p{
+        color: #4e4c4b;
+        font-size: 15px;
+    }
+
+    .footer-social-icons{
+        #github{
+            color: #171515;
+        }
+        #linkedin{
+            color:#00a0dc;
+        }
+        a{
+            font-size: 25px;
+            margin-left: 10px;
+        }
+    }
+}
+
+/*Dark mode*/
+
+.bg-dark-footer{
+    background-color: #373739;
+}
+.bg-dark{
+    color: #fff !important;
+}

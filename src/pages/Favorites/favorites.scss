@@ -1,0 +1,42 @@
+@import '../../components/abstrack';
+
+.title{
+    margin-top: 100px;
+    padding-left: 200px;
+    display: flex;
+    align-items: center;
+
+    @include media (large) {
+        padding-left: 100px;
+    }
+    @include media (small) {
+        padding-left: 10px;
+    }
+
+    h1{
+        display: flex;
+        flex-direction: column;
+        margin-right: 10px;
+
+        &::after{
+            content: " ";
+            width: 130%;
+            height: 2px;
+            background-color: bisque;
+        }
+    }
+
+    span{
+        font-size: 30px;
+    }
+}
+#h4{
+    padding-left: 200px;
+    margin-bottom: 280px;
+    @include media (large) {
+        padding-left: 100px;
+    }
+    @include media (small) {
+        padding-left: 10px;
+    }
+}

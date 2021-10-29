@@ -1,0 +1,73 @@
+@import '../abstrack';
+
+.header-container{
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+
+    ul{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+
+        @include media(small) {
+           justify-content: space-between;
+           padding: 0 10px;
+        }
+
+        li{
+            list-style: none;
+            display: flex;
+            align-items: center;
+
+            @include media(small) {
+                flex-direction: column;
+            }
+
+            #pokemon{
+                font-size: 80px;
+            }
+
+            a{
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                font-size: 15px;
+                color: #4c4b4e;
+
+                span{
+                    font-size:30px ;
+                    margin-left: 20px;
+                }
+
+                img{
+                    width: 100px;
+                    object-fit: cover;
+
+                    @include media(small){
+                        width: 80px;
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*Dark mode*/
+
+.bg-dark-header{
+    background-color: #373739;
+}
+.bg-dark-p{
+    color: #e7e8e9 !important;
+}

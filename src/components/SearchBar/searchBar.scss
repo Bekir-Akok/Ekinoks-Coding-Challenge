@@ -1,0 +1,34 @@
+@import '../abstrack';
+
+.search-container{
+    box-sizing: border-box;
+
+    input{
+        width: 240px;
+        height: 25px;
+        border-radius: 20px;
+        outline: none;
+
+        @include media(small) {
+            width: 150px;
+            height: 20px;
+            margin-left: 5px;
+
+            &::placeholder{
+                font-size: 12px;
+            }
+        }
+
+        &:focus ,
+        &::placeholder{
+            padding-left: 10px;
+        }
+
+        @include media(small) {
+            &:focus ,
+            &::placeholder{
+                padding-left: 2px;
+            }
+        }
+    }
+}

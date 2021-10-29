@@ -1,0 +1,18 @@
+@import '../abstrack';
+
+.toggle {
+  touch-action: pan-x;
+  padding: 0;
+  margin-left: 20px;
+
+  .toggle-container{
+    width: 50px;
+    height: 24px;
+    padding: 0;
+    border-radius: 30px;
+    transition: all .4s ease;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
