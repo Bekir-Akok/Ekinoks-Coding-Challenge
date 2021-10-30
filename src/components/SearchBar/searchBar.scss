@@ -2,6 +2,7 @@
 
 .search-container{
     box-sizing: border-box;
+    position: relative;
 
     input{
         width: 240px;
@@ -10,7 +11,7 @@
         outline: none;
 
         @include media(small) {
-            width: 150px;
+            width: 155px;
             height: 20px;
             margin-left: 5px;
 
@@ -31,4 +32,18 @@
             }
         }
     }
+
+    span{
+        position: absolute;
+        z-index: 99;
+        top: 3px;
+        right: 15px;
+
+        @include media (small) {
+            top: 6px;
+            right: 12px;
+            font-size: 12px;
+        }
+    }
+
 }
