@@ -1,11 +1,12 @@
-import React, { useRef, useEffect ,useContext} from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { changeColor } from '../../helpers/helper';
-import { ThemeContext } from "../../context/ThemeContext";
+import { changeColor } from '@helpers/helper';
+import { ThemeContext } from "@context/ThemeContext";
 import Closer from '../Closer';
 import './pokemonCard.scss';
+import FavButton from '../FavButton/FavButton';
 
-const PokemonCard = ({ pokemon, closer }) => {
+const PokemonCard = ({ pokemon, closer, visible }) => {
 
     let history = useHistory();
     const types = useRef([]);
@@ -21,6 +22,9 @@ const PokemonCard = ({ pokemon, closer }) => {
             <Closer
                 pokemon={pokemon}
                 closer={closer} />
+            <FavButton
+                pokemon={pokemon}
+                visible={visible} />
             <div
                 className={`card-container ${darkMode ? "bg-dark-card" : ""}`}
                 onClick={() => history.push({

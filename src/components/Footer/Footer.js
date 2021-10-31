@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { SiLinkedin, SiGithub } from 'react-icons/si';
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "@context/ThemeContext";
 import './footer.scss';
 
 const Footer = () => {

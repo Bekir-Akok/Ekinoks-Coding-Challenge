@@ -19,7 +19,7 @@ export const changeColor = (types) => {
         } else if (firstIndex === "NORMAL" || firstIndex === "BUG") {
             types.current[0].style.backgroundColor = "#fc9c94"
         } else if (firstIndex === "GROUND" || firstIndex === "PSYCHIC") {
-            types.current[0].style.backgroundColor = "#DC7633"
+            types.current[0].style.backgroundColor = "#fa8246"
         }
         if (types.current[1]) {
             const secondIndex = types.current[1].innerHTML;
@@ -39,7 +39,7 @@ export const changeColor = (types) => {
             } else if (secondIndex === "NORMAL" || secondIndex === "BUG") {
                 types.current[1].style.backgroundColor = "#fc9c94"
             } else if (secondIndex === "GROUND" || secondIndex === "PSYCHIC") {
-                types.current[1].style.backgroundColor = "#DC7633"
+                types.current[1].style.backgroundColor = "#fa8246"
             }
         }
     }

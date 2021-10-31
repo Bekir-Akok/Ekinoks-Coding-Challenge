@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import Routes from './Routes';
-import { ThemeContext } from "./context/ThemeContext";
+import { ThemeContext } from "@context/ThemeContext";
 
 const App = () => {
 

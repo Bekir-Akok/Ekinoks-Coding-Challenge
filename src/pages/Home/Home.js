@@ -1,21 +1,48 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import PokemonCardList from '../../components/PokemonCardList';
-import Layout from '../../layout';
-import { getPoke } from '../../redux/actions/action';
+import PokemonCardList from '@components/PokemonCardList';
+import Layout from '@layout';
+import { getPoke } from '@redux/actions/action';
+import Pagination from '@components/Pagination';
 
 const Home = () => {
 
-    const pokemons = useSelector(state => state.pokemonReducer.searchItems);
+    const { pokemons, searchItems } = useSelector(state => state.pokemonReducer);
     const dispatch = useDispatch();
+    const [currentItems, setCurrentItems] = useState(null);
+    const [pageCount, setPageCount] = useState(0);
+    const [itemOffset, setItemOffset] = useState(0);
+    const [itemsPerPage] = useState(20);
 
     useEffect(() => {
-        dispatch(getPoke())
+        if (pokemons.length !== searchItems.length
+            || pokemons.length === 0) {
+            dispatch(getPoke())
+        }
     }, [])
+
+    useEffect(() => {
+        if (searchItems) {
+            const endOffset = itemOffset + itemsPerPage;
+            setCurrentItems(searchItems.slice(itemOffset, endOffset));
+            setPageCount(Math.ceil(searchItems.length / itemsPerPage));
+        }
+    }, [itemOffset, itemsPerPage, searchItems]);
+
+    const handlePageClick = (event) => {
+        const newOffset = (event.selected * itemsPerPage) % searchItems.length;
+        setItemOffset(newOffset);
+    };
 
     return (
         <Layout>
-            <PokemonCardList pokemons={pokemons} closer={false}/>
+            <PokemonCardList
+                pokemons={currentItems}
+                closer={false}
+                visible={true} />
+            <Pagination
+                handlePageClick={handlePageClick}
+                pageCount={pageCount} />
         </Layout>
     )
 }

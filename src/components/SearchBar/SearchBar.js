@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { searchItems } from '../../redux/actions/action';
-import { ThemeContext } from "../../context/ThemeContext";
+import { searchItems } from '@redux/actions/action';
+import { ThemeContext } from "@context/ThemeContext";
 import { RiSearch2Line, RiSearchEyeFill } from 'react-icons/ri';
 import './searchBar.scss';
 
@@ -22,7 +22,7 @@ const SearchBar = () => {
 
     useEffect(() => {
         dispatch(searchItems(filteredPokemons))
-    }, [search, pokemons])
+    }, [search , pokemons])
 
     return (
         <div className="search-container">

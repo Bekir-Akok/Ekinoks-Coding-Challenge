@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { MdOutlineCatchingPokemon } from 'react-icons/md';
 import { useSelector } from 'react-redux';
-import SearchBar from '../SearchBar/SearchBar';
-import { ThemeContext } from "../../context/ThemeContext";
+import SearchBar from '../SearchBar';
+import { ThemeContext } from "@context/ThemeContext";
 import ToggleButton from '../ToggleButton';
-import pokemon from '../../assets/logo.png'
+import pokemon from '@assets/logo.png';
 import './header.scss';
 
 const Header = () => {

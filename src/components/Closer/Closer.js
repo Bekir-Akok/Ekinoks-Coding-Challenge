@@ -1,7 +1,7 @@
 import React from 'react';
 import { GrClose } from 'react-icons/gr';
 import { useDispatch } from 'react-redux';
-import { removeToFav } from '../../redux/actions/action';
+import { removeToFav } from '@redux/actions/action';
 import './closer.scss';
 
 const Closer = ({ pokemon, closer }) => {

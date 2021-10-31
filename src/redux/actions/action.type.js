@@ -1,5 +1,7 @@
-export const GET_POKE = "GET_POKE";
+export const GET_POKE_SUCCESS = "GET_POKE_SUCCESS";
+export const GET_POKE_ERROR = "GET_POKE_ERROR";
+export const GET_ABILITY_SUCCESS= "GET_ABILITY_SUCCESS";
+export const GET_ABILITY_ERROR= "GET_ABILITY_ERROR";
 export const FILTRED_ITEM = "FILTRED_ITEM";
-export const GET_ABILITY = "GET_ABILITY";
 export const ADD_TO_FAV = "ADD_TO_FAV";
 export const REMOVE_TO_FAV = "REMOVE_TO_FAV";

@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useContext } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeColor, statsColor } from '../../helpers/helper';
-import { getAbility, addToFav } from '../../redux/actions/action';
-import { MdOutlineFavoriteBorder } from 'react-icons/md';
-import { ThemeContext } from "../../context/ThemeContext";
-import Layout from '../../layout';
+import { changeColor, statsColor } from '@helpers/helper';
+import { getAbility, addToFav } from '@redux/actions/action';
+import { MdOutlineFavoriteBorder, MdOutlineCatchingPokemon } from 'react-icons/md';
+import { ThemeContext } from "@context/ThemeContext";
+import Layout from '@layout';
 import './pokemon.scss';
 
 const Pokemon = () => {
@@ -15,31 +15,10 @@ const Pokemon = () => {
     const location = useLocation();
     let history = useHistory();
     const dispatch = useDispatch();
-    const pokemonAbility = useSelector(state => state.pokemonReducer.pokemonAbilitys);
-    const favorite = useSelector(state => state.favoriteReducer.favorites);
+    const { pokemonAbility } = useSelector(state => state.pokemonReducer);
     const pokemon = location.state.pokemon;
     const theme = useContext(ThemeContext);
     const darkMode = theme.state.darkMode;
-
-    const clickHandler = (pokemon) => {
-        favorite.length === 0
-            ? dispatch(addToFav(pokemon))
-            : checkPokemon(pokemon)
-    }
-
-    const checkPokemon = (pokemon) => {
-        const isTrue = favorite.some(element => {
-            return element.id === pokemon.id
-        })
-        isTrue
-            ? goToFavorite()
-            : dispatch(addToFav(pokemon))
-    }
-
-    const goToFavorite = () => {
-        alert('This pokemon has already been added to your favorites.');
-        history.push('/favorites')
-    }
 
     useEffect(() => {
         changeColor(types);
@@ -82,10 +61,11 @@ const Pokemon = () => {
                         </div>
                         <div
                             className="pokemon-fav">
-                            <button onClick={() => clickHandler(pokemon)}>
-                                ADD TO FAVORITES
+                            <button
+                                onClick={() => history.push(`/Game/catch/${pokemon.name}`, pokemon)}>
+                                Catch The Pokemon
                                 <span>
-                                    <MdOutlineFavoriteBorder />
+                                    <MdOutlineCatchingPokemon />
                                 </span>
                             </button>
                         </div>

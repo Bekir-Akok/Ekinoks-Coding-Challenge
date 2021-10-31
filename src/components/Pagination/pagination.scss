@@ -1,0 +1,50 @@
+@import '../abstrack';
+
+.pagination-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .pagination{
+        width: 40%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @include media(medium) {
+            width:60%;
+        }
+
+        @include media(small) {
+            width:90%;
+        }
+    }
+    
+    .page-item{
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        color: #2a75bb;
+    
+        &.active{
+            color: #fff;
+            background-color: #fecb02;
+            width: 30px !important;
+            height: 30px !important;
+            border-radius: 50%;
+            box-sizing: border-box !important;
+        }
+    }
+    
+    
+    .previous{
+        list-style:none;
+    }
+    
+    .next{
+        list-style: none;
+    }
+}
