@@ -47,6 +47,10 @@
                 span{
                     font-size:30px ;
                     margin-left: 20px;
+
+                    @include media(small) {
+                        font-size:20px ;
+                    }
                 }
 
                 img{

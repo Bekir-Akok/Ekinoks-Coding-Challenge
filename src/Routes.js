@@ -15,7 +15,7 @@ const Routes = () => {
             component: Home
         },
         {
-            path: "/Favorites",
+            path: "/Favorites/:name",
             exact: true,
             component: Favorites
         },

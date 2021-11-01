@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
-import PokemonCard from '../PokemonCard';
+import React, { useContext } from 'react';
+import PokemonCard from '@components/PokemonCard';
 import { ThemeContext } from "@context/ThemeContext";
-import './pokemonCardList.scss'
+import './pokemonCardList.scss';
 
 const PokemonCardList = ({ pokemons, closer, visible }) => {
 

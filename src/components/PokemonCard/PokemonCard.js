@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { changeColor } from '@helpers/helper';
 import { ThemeContext } from "@context/ThemeContext";
 import Closer from '../Closer';
+import FavButton from '@components/FavButton';
 import './pokemonCard.scss';
-import FavButton from '../FavButton/FavButton';
 
 const PokemonCard = ({ pokemon, closer, visible }) => {
 
@@ -14,8 +14,8 @@ const PokemonCard = ({ pokemon, closer, visible }) => {
     const darkMode = theme.state.darkMode;
 
     useEffect(() => {
-        changeColor(types)
-    }, [pokemon])
+        changeColor(types);
+    }, [])
 
     return (
         <div style={{ position: 'relative' }}>

@@ -5,3 +5,5 @@ export const GET_ABILITY_ERROR= "GET_ABILITY_ERROR";
 export const FILTRED_ITEM = "FILTRED_ITEM";
 export const ADD_TO_FAV = "ADD_TO_FAV";
 export const REMOVE_TO_FAV = "REMOVE_TO_FAV";
+export const ADD_TO_CATCH = "ADD_TO_CATCH";
+export const REMOVE_TO_CATCH = "REMOVE_TO_CATCH";

@@ -27,20 +27,18 @@ const FavButton = ({ pokemon, visible }) => {
 
     const goToFavorite = () => {
         alert('This pokemon has already been added to your favorites.');
-        history.push('/favorites')
+        history.push('/favorites/fav')
     }
 
     return (
-        <>
+        <div
+            className="fav-btn"
+            onClick={() => addToFavorites(pokemon)}>
             {
                 visible &&
-                <div
-                    onClick={() => addToFavorites(pokemon)}
-                    className="fav-btn">
-                    <FiHeart />
-                </div>
+                <FiHeart />
             }
-        </>
+        </div>
     )
 }
 

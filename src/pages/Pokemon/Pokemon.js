@@ -2,9 +2,10 @@ import React, { useRef, useEffect, useContext } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeColor, statsColor } from '@helpers/helper';
-import { getAbility, addToFav } from '@redux/actions/action';
-import { MdOutlineFavoriteBorder, MdOutlineCatchingPokemon } from 'react-icons/md';
+import { getAbility } from '@redux/actions/action';
+import { MdOutlineCatchingPokemon } from 'react-icons/md';
 import { ThemeContext } from "@context/ThemeContext";
+import FavButton from '@components/FavButton'
 import Layout from '@layout';
 import './pokemon.scss';
 
@@ -15,10 +16,25 @@ const Pokemon = () => {
     const location = useLocation();
     let history = useHistory();
     const dispatch = useDispatch();
-    const { pokemonAbility } = useSelector(state => state.pokemonReducer);
+    const { pokemonAbilitys } = useSelector(state => state.pokemonReducer);
+    const { catchs } = useSelector(state => state.favoriteReducer);
     const pokemon = location.state.pokemon;
     const theme = useContext(ThemeContext);
     const darkMode = theme.state.darkMode;
+
+    const addToCatch = (pokemon) => {
+        const isTrue = catchs.some(element => {
+            return element.name === pokemon.name
+        })
+        isTrue
+            ? goToCatch()
+            : history.push(`/Game/catch/${pokemon.name}`, pokemon)
+    }
+
+    const goToCatch = () => {
+        alert('This pokemon has already been added to your catchs.')
+        history.push('/favorites/catchs')
+    }
 
     useEffect(() => {
         changeColor(types);
@@ -30,6 +46,9 @@ const Pokemon = () => {
         <Layout>
             <div className={`pokemon-container ${darkMode ? "bg-dark-pokemon" : ""}`} >
                 <div className={`pokemon-wrapper ${darkMode ? "bg-dark-wrapper" : ""}`}>
+                    <FavButton
+                        pokemon={pokemon}
+                        visible={true} />
                     <div className="pokemon-img">
                         <img src={pokemon.sprites.front_shiny} alt="" />
                     </div>
@@ -48,8 +67,8 @@ const Pokemon = () => {
                         </div>
                         <div className="pokemon-description">
                             {
-                                pokemonAbility &&
-                                pokemonAbility.effect_entries.map((entries, i) => {
+                                pokemonAbilitys &&
+                                pokemonAbilitys.effect_entries.map((entries, i) => {
                                     return (
                                         entries.language.name === "en"
                                             ? (
@@ -62,7 +81,7 @@ const Pokemon = () => {
                         <div
                             className="pokemon-fav">
                             <button
-                                onClick={() => history.push(`/Game/catch/${pokemon.name}`, pokemon)}>
+                                onClick={() => addToCatch(pokemon)}>
                                 Catch The Pokemon
                                 <span>
                                     <MdOutlineCatchingPokemon />

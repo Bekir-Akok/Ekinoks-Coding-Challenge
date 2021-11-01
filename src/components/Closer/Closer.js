@@ -1,15 +1,19 @@
 import React from 'react';
 import { GrClose } from 'react-icons/gr';
 import { useDispatch } from 'react-redux';
-import { removeToFav } from '@redux/actions/action';
+import { removeToFav, removeToCatch } from '@redux/actions/action';
 import './closer.scss';
+import { useParams } from 'react-router';
 
 const Closer = ({ pokemon, closer }) => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const params = useParams()
 
     const clickHandler = (pokemon) => {
-        dispatch(removeToFav(pokemon))
+        params.name === "fav"
+            ? dispatch(removeToFav(pokemon))
+            : dispatch(removeToCatch(pokemon))
     }
 
     return (

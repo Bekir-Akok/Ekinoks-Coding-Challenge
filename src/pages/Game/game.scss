@@ -1,10 +1,11 @@
+@import '@components/abstrack.scss';
+
 .game-board {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    perspective: 1000px;
-    margin-bottom: 15px;
-    margin-top: 100px;
+    margin-bottom: 30px;
+
     .card {
       width: 20%;
       user-select: none;
@@ -16,25 +17,33 @@
       transition: 0.6s;
       transform-style: preserve-3d;
       position: relative;
+
       div {
         backface-visibility: hidden;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
         border-radius: 10px;
         transition: 0.6s;
-        background-color: #0B9BA1 ;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        
+        img{
+          width: 100px;
+          object-fit: cover;
+
+          @include media(small) {
+            width: 70px;
+          }
+        }
+
       }
       .back {
         font-size: 50px;
         line-height: 120px;
         cursor: pointer;
         color: #A11372;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        left: 0;
+
         @media screen and (max-width:500px) {
           font-size:30px;
         }
@@ -43,11 +52,27 @@
         transform: rotateY(180deg);
         line-height: 110px;
         text-emphasis: none;
-        img {
-          vertical-align: middle;
-          width: 70%;
-          max-width: 150px;
-          max-height: 75%;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .front-background{
+          background-size: cover;
+          height: 140px;
+          width: 100px;
+
+          @include media(small) {
+            width: 70px;
+            height: 98px;
+          }
+
+          img {
+            vertical-align: middle;
+            width: 70%;
+            max-width: 150px;
+            max-height: 75%;
+          }
         }
       }
       &.flipped {
@@ -56,7 +81,6 @@
       &.matched {
         transform: rotateY(180deg);
         .front {
-          box-shadow: 0 0 0 2px rgba(#000, 0.05) inset;
           animation: selected 0.8s 0s ease 1;
           animation-fill-mode: both;
           opacity: 0.2;
@@ -64,25 +88,54 @@
       }
     }
   }
-  
-  .restart-button {
-    width: 12em;
-    height: 3em;
-    cursor: pointer;
-    color: rgb(255, 255, 255);
-    border-radius: 4px;
-    font-size: 12px;
-    background-color: #A11372;
-    border: 0;
-  }
-  
+    
   .centered {
     width: 100%;
     height: 100%;
-    text-align: center;
-  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 30px;
+
+    button{
+      outline: none;
+      border: none;
+      background-color: #e73b5e;
+      width: 300px;
+      height: 40px;
+      border-radius: 40px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: lighter;
+      margin-top:20px ;
+      margin-bottom:50px ;
+    }
+
     h1{
-      color:#A11372;
+      text-align: center;
+    }
+  }
+
+  .game-board-title{
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 100px;
+    
+    h2{
+
+      @include media (small){
+        font-size: 14px;
+      }
+    }
+
+    h3{
+      font-weight: lighter;
+
+      @include media (small){
+        font-size: 12px;
+      }
     }
   }
   

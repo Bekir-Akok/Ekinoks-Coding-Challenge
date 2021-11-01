@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useSelector } from "react-redux";
-import Card from "../Card/Card";
-import GameOver from "../GameOver/GameOver";
+import Card from "@components/Card";
+import GameOver from "@components/GameOver";
+import { ThemeContext } from "@context/ThemeContext";
 
 const GameBoard = ({ location }) => {
 
-    const { searchItems } = useSelector(state => state.pokemonReducer)
+    const [flippedCards, setFlippedCards] = useState([]);
+    const [gameOver, setGameOver] = useState(false);
+    const { searchItems } = useSelector(state => state.pokemonReducer);
     const pokeArr = searchItems.slice(6, 12);
-
-    console.log(pokeArr);
+    const cloneArr = [...pokeArr];
+    const mixArr = pokeArr.concat(cloneArr);
+    const theme = useContext(ThemeContext);
+    const darkMode = theme.state.darkMode; 
 
     const shuffle = array => {
         let currentIndex = array.length,
@@ -26,7 +31,7 @@ const GameBoard = ({ location }) => {
 
 
     const [cardList, setCardList] = useState(
-        shuffle(pokeArr).map((pokemon, index) => {
+        shuffle(mixArr).map((pokemon, index) => {
             return {
                 id: index,
                 name: pokemon.name,
@@ -36,10 +41,6 @@ const GameBoard = ({ location }) => {
             };
         })
     );
-
-    const [flippedCards, setFlippedCards] = useState([]);
-    const [gameOver, setGameOver] = useState(false);
-
 
     const handleClick = (name, index) => {
 
@@ -96,6 +97,17 @@ const GameBoard = ({ location }) => {
 
     return (
         <>
+            {
+                !gameOver &&
+                <div
+                    style={{ color: `${darkMode ? "#fff" : ""}` }}
+                    className="game-board-title">
+                    <h2>Pokemon Card Game</h2>
+                    <h3>
+                        You must successfully finish the card game to catch the pokemon.
+                    </h3>
+                </div>
+            }
             <div className="game-board">
                 {!gameOver &&
                     cardList.map((card, index) => (
@@ -109,7 +121,10 @@ const GameBoard = ({ location }) => {
                             clicked={flippedCards.length === 2 ? () => { } : handleClick}
                         />
                     ))}
-                {gameOver && <GameOver location={location} />}
+                {gameOver &&
+                    <GameOver
+                        location={location}
+                        gameOver={gameOver} />}
             </div>
         </>
     );

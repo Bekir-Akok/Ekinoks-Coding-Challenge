@@ -5,7 +5,9 @@ import {
     GET_ABILITY_ERROR,
     FILTRED_ITEM,
     ADD_TO_FAV,
-    REMOVE_TO_FAV
+    REMOVE_TO_FAV,
+    ADD_TO_CATCH,
+    REMOVE_TO_CATCH
 } from './action.type';
 
 /* List all pokemons */
@@ -50,4 +52,14 @@ export const addToFav = (pokemon) => {
 
 export const removeToFav = (pokemon) => {
     return { type: REMOVE_TO_FAV, payload: pokemon }
+} 
+
+/*Catch actions */
+
+export const addToCatch = (pokemon) => {
+    return { type: ADD_TO_CATCH, payload: pokemon }
+}
+
+export const removeToCatch = (pokemon) => {
+    return { type: REMOVE_TO_CATCH, payload: pokemon }
 }

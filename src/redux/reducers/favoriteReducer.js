@@ -1,7 +1,13 @@
-import { ADD_TO_FAV, REMOVE_TO_FAV } from "../actions/action.type";
+import {
+    ADD_TO_FAV,
+    REMOVE_TO_FAV,
+    ADD_TO_CATCH,
+    REMOVE_TO_CATCH
+} from "../actions/action.type";
 
 const initialState = {
-    favorites: []
+    favorites: [],
+    catchs: []
 };
 
 const favoriteReducer = (state = initialState, action) => {
@@ -20,7 +26,23 @@ const favoriteReducer = (state = initialState, action) => {
         case REMOVE_TO_FAV:
             return {
                 ...state,
-                favorites: state.favorites.filter(pokemon => 
+                favorites: state.favorites.filter(pokemon =>
+                    pokemon.name !== action.payload.name)
+            }
+
+        case ADD_TO_CATCH:
+            return {
+                ...state,
+                catchs: [
+                    ...state.catchs,
+                    action.payload
+                ]
+            }
+
+        case REMOVE_TO_CATCH:
+            return {
+                ...state,
+                catchs: state.catchs.filter(pokemon =>
                     pokemon.name !== action.payload.name)
             }
 

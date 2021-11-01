@@ -1,4 +1,6 @@
 import React from "react";
+import background from '@assets/card-back.jpg'
+import frontEnd from '@assets/card-front.jpg'
 
 const Card = ({ id, name, flipped, matched, clicked, img }) => {
     return (
@@ -9,10 +11,14 @@ const Card = ({ id, name, flipped, matched, clicked, img }) => {
             }
         >
             <div className="back">
-                <img src="" alt="" />
+                <img src={background} alt="" />
             </div>
             <div className="front">
-                <img src={img} alt={name} />
+                <div
+                    style={{ backgroundImage: `url(${frontEnd})` }}
+                    className="front-background">
+                    <img src={img} alt={name} />
+                </div>
             </div>
         </div>
     );

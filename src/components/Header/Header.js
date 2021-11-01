@@ -1,16 +1,17 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { MdOutlineCatchingPokemon } from 'react-icons/md';
+import { FiHeart } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
-import SearchBar from '../SearchBar';
+import SearchBar from '@components/SearchBar';
 import { ThemeContext } from "@context/ThemeContext";
-import ToggleButton from '../ToggleButton';
+import ToggleButton from '@components/ToggleButton';
 import pokemon from '@assets/logo.png';
 import './header.scss';
 
 const Header = () => {
 
-    const favorite = useSelector(state => state.favoriteReducer.favorites);
+    const {favorites , catchs} = useSelector(state => state.favoriteReducer);
     const theme = useContext(ThemeContext);
     const darkMode = theme.state.darkMode;
 
@@ -25,12 +26,20 @@ const Header = () => {
                 <SearchBar />
                 <li >
                     <Link
-                        to="/favorites"
+                        to="/favorites/catchs"
                         className={darkMode ? "bg-dark-p" : ""}>
                         <span>
                             <MdOutlineCatchingPokemon />
                         </span>
-                        {favorite.length}
+                        {catchs.length}
+                    </Link>
+                    <Link
+                        to="/favorites/fav"
+                        className={darkMode ? "bg-dark-p" : ""}>
+                        <span>
+                            <FiHeart />
+                        </span>
+                        {favorites.length}
                     </Link>
                     <ToggleButton />
                 </li>
