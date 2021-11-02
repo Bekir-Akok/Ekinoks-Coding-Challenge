@@ -9,18 +9,22 @@ const Home = () => {
 
     const { pokemons, searchItems } = useSelector(state => state.pokemonReducer);
     const dispatch = useDispatch();
+    /*Pagination*/
     const [currentItems, setCurrentItems] = useState(null);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
     const [itemsPerPage] = useState(20);
 
+    /*Re-render pokemons*/
     useEffect(() => {
-        if (pokemons.length !== searchItems.length
-            || pokemons.length === 0) {
-            dispatch(getPoke())
-        }
+        pokemons.length !== searchItems.length
+            ? dispatch(getPoke())
+            : pokemons.length === 0
+                ? dispatch(getPoke())
+                : console.log();
     }, [])
 
+    /*Pagination*/
     useEffect(() => {
         if (searchItems) {
             const endOffset = itemOffset + itemsPerPage;
@@ -33,6 +37,7 @@ const Home = () => {
         const newOffset = (event.selected * itemsPerPage) % searchItems.length;
         setItemOffset(newOffset);
     };
+    /*Pagination*/
 
     return (
         <Layout>

@@ -15,15 +15,17 @@ const Footer = () => {
             </p>
             <div className="footer-social-icons">
                 <a
-                    target="_blank" rel="noopener noreferrer"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={{ color: `${darkMode ? "#fff" : ""}` }}
                     id="github"
                     href="https://github.com/Bekir-Akok">
                     <SiGithub />
                 </a>
-                <a 
-                id="linkedin"
-                    target="_blank" rel="noopener noreferrer"
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id="linkedin"
                     href="https://www.linkedin.com/in/Bekir-Akok/">
                     <SiLinkedin />
                 </a>

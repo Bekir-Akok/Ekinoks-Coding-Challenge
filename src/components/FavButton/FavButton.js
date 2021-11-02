@@ -7,8 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 const FavButton = ({ pokemon, visible }) => {
 
     let history = useHistory();
-    const { favorites } = useSelector(state => state.favoriteReducer);
     const dispatch = useDispatch();
+    const { favorites } = useSelector(state => state.favoriteReducer);
 
     const addToFavorites = (pokemon) => {
         favorites.length === 0

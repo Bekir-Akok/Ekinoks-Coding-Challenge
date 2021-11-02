@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useContext } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { MdOutlineCatchingPokemon } from 'react-icons/md';
 import { changeColor, statsColor } from '@helpers/helper';
 import { getAbility } from '@redux/actions/action';
-import { MdOutlineCatchingPokemon } from 'react-icons/md';
 import { ThemeContext } from "@context/ThemeContext";
 import FavButton from '@components/FavButton'
 import Layout from '@layout';
@@ -18,9 +18,9 @@ const Pokemon = () => {
     const dispatch = useDispatch();
     const { pokemonAbilitys } = useSelector(state => state.pokemonReducer);
     const { catchs } = useSelector(state => state.favoriteReducer);
-    const pokemon = location.state.pokemon;
     const theme = useContext(ThemeContext);
     const darkMode = theme.state.darkMode;
+    const pokemon = location.state.pokemon;
 
     const addToCatch = (pokemon) => {
         const isTrue = catchs.some(element => {
@@ -36,10 +36,14 @@ const Pokemon = () => {
         history.push('/favorites/catchs')
     }
 
-    useEffect(() => {
+    const combineHandler = () => {
         changeColor(types);
-        statsColor(stats)
-        dispatch(getAbility(pokemon.abilities[0].ability.url))
+        statsColor(stats);
+        dispatch(getAbility(pokemon.abilities[0].ability.url));
+    }
+
+    useEffect(() => {
+        combineHandler();
     }, [])
 
     return (

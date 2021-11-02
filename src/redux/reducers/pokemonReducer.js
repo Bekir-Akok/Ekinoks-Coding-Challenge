@@ -8,7 +8,6 @@ import {
 
 const initialState = {
     pokemons: [],
-    isLoading: false,
     pokemonMessage: null,
     searchItems: [],
     pokemonAbilitys: null,
@@ -25,7 +24,7 @@ const pokemonReducer = (state = initialState, action) => {
                 pokemons: [
                     ...state.pokemons,
                     action.payload,
-                ], isLoading: true
+                ]
             }
 
         case GET_POKE_ERROR:
@@ -50,8 +49,8 @@ const pokemonReducer = (state = initialState, action) => {
         case GET_ABILITY_ERROR:
             return {
                 ...state,
-                abilitysMessage:[ action.payload]
-                   
+                abilitysMessage:
+                    action.payload
             }
 
         default:

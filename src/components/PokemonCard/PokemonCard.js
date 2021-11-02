@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { changeColor } from '@helpers/helper';
 import { ThemeContext } from "@context/ThemeContext";
-import Closer from '../Closer';
+import Closer from '@components/Closer';
 import FavButton from '@components/FavButton';
 import './pokemonCard.scss';
 
@@ -15,7 +15,7 @@ const PokemonCard = ({ pokemon, closer, visible }) => {
 
     useEffect(() => {
         changeColor(types);
-    }, [])
+    }, [pokemon]);
 
     return (
         <div style={{ position: 'relative' }}>
@@ -41,7 +41,11 @@ const PokemonCard = ({ pokemon, closer, visible }) => {
                     {
                         pokemon.types.map((type, i) => {
                             return (
-                                <p key={i} ref={(element) => { types.current[i] = element }}>{type.type.name.toUpperCase()}</p>
+                                <p
+                                    key={i}
+                                    ref={(element) => { types.current[i] = element }}>
+                                    {type.type.name.toUpperCase()}
+                                </p>
                             )
                         })
                     }

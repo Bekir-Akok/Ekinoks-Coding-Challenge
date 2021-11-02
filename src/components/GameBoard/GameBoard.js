@@ -6,14 +6,15 @@ import { ThemeContext } from "@context/ThemeContext";
 
 const GameBoard = ({ location }) => {
 
-    const [flippedCards, setFlippedCards] = useState([]);
-    const [gameOver, setGameOver] = useState(false);
     const { searchItems } = useSelector(state => state.pokemonReducer);
+    const theme = useContext(ThemeContext);
+    const darkMode = theme.state.darkMode;
+    /*GameBoard variable */
     const pokeArr = searchItems.slice(6, 12);
     const cloneArr = [...pokeArr];
     const mixArr = pokeArr.concat(cloneArr);
-    const theme = useContext(ThemeContext);
-    const darkMode = theme.state.darkMode; 
+    const [flippedCards, setFlippedCards] = useState([]);
+    const [gameOver, setGameOver] = useState(false);
 
     const shuffle = array => {
         let currentIndex = array.length,

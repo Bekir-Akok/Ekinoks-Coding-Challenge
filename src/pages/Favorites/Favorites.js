@@ -4,8 +4,8 @@ import { CgPokemon } from 'react-icons/cg';
 import PokemonCardList from '@components/PokemonCardList'
 import Layout from '@layout';
 import { ThemeContext } from "@context/ThemeContext";
-import './favorites.scss';
 import { useParams } from 'react-router-dom';
+import './favorites.scss';
 
 const Favorites = () => {
 

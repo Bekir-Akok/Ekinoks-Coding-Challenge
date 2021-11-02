@@ -1,6 +1,6 @@
 import React from "react";
-import background from '@assets/card-back.jpg'
-import frontEnd from '@assets/card-front.jpg'
+import background from '@assets/card-back.jpg';
+import frontEnd from '@assets/card-front.jpg';
 
 const Card = ({ id, name, flipped, matched, clicked, img }) => {
     return (

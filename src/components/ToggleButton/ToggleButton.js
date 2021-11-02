@@ -10,11 +10,9 @@ const ToggleButton = () => {
   const darkMode = theme.state.darkMode;
 
   const onClick = () => {
-    if (darkMode) {
-      theme.dispatch({ type: "LIGHTMODE" });
-    } else {
-      theme.dispatch({ type: "DARKMODE" });
-    }
+    darkMode
+      ? theme.dispatch({ type: "LIGHTMODE" })
+      : theme.dispatch({ type: "DARKMODE" })
   };
 
   return (

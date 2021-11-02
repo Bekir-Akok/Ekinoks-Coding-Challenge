@@ -3,8 +3,8 @@ import pokemonReducer from "./pokemonReducer";
 import favoriteReducer from "./favoriteReducer";
 
 const rootReducer = combineReducers({
-    pokemonReducer ,
+    pokemonReducer,
     favoriteReducer
 })
 
-export default rootReducer 
+export default rootReducer
