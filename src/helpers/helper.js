@@ -109,3 +109,29 @@ export const statsColor = (stats) => {
                                     : console.log();
         })
 }
+/*change color to refs*/
+
+/*Pokemon catch && fav control */
+export const checkCatch = (state, setState, pokemon) => {
+    state.forEach(element => {
+        element.name === pokemon.name
+            ? setState(false)
+            : console.log();
+    })
+}
+/*Pokemon catch && fav control */
+
+/**/
+export const checkState = (state, pokemon, ref, favorites) => {
+    state === favorites
+        ? state.forEach(x =>
+            x.id === pokemon.id
+                ? ref.current.style.backgroundColor = "#acb6fb"
+                : console.log()
+        )
+        : state.forEach(x =>
+            x.id === pokemon.id
+                ? ref.current.style.backgroundColor = "#fe6568"
+                : console.log()
+        )
+}

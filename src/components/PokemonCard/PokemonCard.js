@@ -1,7 +1,9 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useRef, useEffect, useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { changeColor } from '@helpers/helper';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeColor, checkCatch, checkState } from '@helpers/helper';
 import { ThemeContext } from "@context/ThemeContext";
+import { removeToFav } from '@redux/actions/action';
 import Closer from '@components/Closer';
 import FavButton from '@components/FavButton';
 import './pokemonCard.scss';
@@ -10,22 +12,49 @@ const PokemonCard = ({ pokemon, closer, visible }) => {
 
     let history = useHistory();
     const types = useRef([]);
+    const divBackground = useRef();
+    const dispatch = useDispatch()
+    const [visibles, setVisibles] = useState(visible);
+    const { favorites, catchs } = useSelector(state => state.favoriteReducer);
     const theme = useContext(ThemeContext);
     const darkMode = theme.state.darkMode;
+
+    const comporeList = () => {
+        favorites &&
+            favorites.forEach(pokemon => {
+                catchs.forEach(catches => {
+                    catches.name === pokemon.name
+                        ? dispatch(removeToFav(pokemon))
+                        : console.log();
+                })
+            })
+    }
+
+    useEffect(() => {
+        checkCatch(catchs, setVisibles, pokemon);
+        checkCatch(favorites, setVisibles, pokemon);
+        comporeList();
+        checkState(catchs, pokemon, divBackground);
+        checkState(favorites, pokemon, divBackground , favorites);
+    }, [pokemon, favorites, catchs, visible])
+
+    console.log(favorites)
 
     useEffect(() => {
         changeColor(types);
     }, [pokemon]);
 
     return (
-        <div style={{ position: 'relative' }}>
+        <div
+            style={{ position: 'relative' }}>
             <Closer
                 pokemon={pokemon}
                 closer={closer} />
             <FavButton
                 pokemon={pokemon}
-                visible={visible} />
+                visibles={visibles} />
             <div
+                ref={divBackground}
                 className={`card-container ${darkMode ? "bg-dark-card" : ""}`}
                 onClick={() => history.push({
                     pathname: `/pokemon/${pokemon.name}`,

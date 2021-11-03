@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { addToFav } from '@redux/actions/action';
 import { useSelector, useDispatch } from 'react-redux';
 
-const FavButton = ({ pokemon, visible }) => {
+const FavButton = ({ pokemon, visibles }) => {
 
     let history = useHistory();
     const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const FavButton = ({ pokemon, visible }) => {
             className="fav-btn"
             onClick={() => addToFavorites(pokemon)}>
             {
-                visible &&
+                visibles &&
                 <FiHeart />
             }
         </div>

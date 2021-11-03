@@ -1,8 +1,8 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useRef, useEffect, useContext, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineCatchingPokemon } from 'react-icons/md';
-import { changeColor, statsColor } from '@helpers/helper';
+import { changeColor, statsColor, checkCatch, checkState } from '@helpers/helper';
 import { getAbility } from '@redux/actions/action';
 import { ThemeContext } from "@context/ThemeContext";
 import FavButton from '@components/FavButton'
@@ -13,11 +13,13 @@ const Pokemon = () => {
 
     const types = useRef([]);
     const stats = useRef([]);
+    const divBackground = useRef();
     const location = useLocation();
     let history = useHistory();
     const dispatch = useDispatch();
     const { pokemonAbilitys } = useSelector(state => state.pokemonReducer);
-    const { catchs } = useSelector(state => state.favoriteReducer);
+    const { favorites, catchs } = useSelector(state => state.favoriteReducer);
+    const [visible, setVisible] = useState(true);
     const theme = useContext(ThemeContext);
     const darkMode = theme.state.darkMode;
     const pokemon = location.state.pokemon;
@@ -46,13 +48,22 @@ const Pokemon = () => {
         combineHandler();
     }, [])
 
+    useEffect(() => {
+        checkCatch(catchs, setVisible, pokemon);
+        checkCatch(favorites, setVisible, pokemon);
+        checkState(catchs, pokemon, divBackground);
+        checkState(favorites, pokemon, divBackground, favorites);
+    }, [pokemon, favorites, catchs, visible])
+
     return (
         <Layout>
             <div className={`pokemon-container ${darkMode ? "bg-dark-pokemon" : ""}`} >
-                <div className={`pokemon-wrapper ${darkMode ? "bg-dark-wrapper" : ""}`}>
+                <div
+                    ref={divBackground}
+                    className={`pokemon-wrapper ${darkMode ? "bg-dark-wrapper" : ""}`}>
                     <FavButton
                         pokemon={pokemon}
-                        visible={true} />
+                        visibles={visible} />
                     <div className="pokemon-img">
                         <img src={pokemon.sprites.front_shiny} alt="" />
                     </div>
