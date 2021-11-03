@@ -12,7 +12,7 @@ const PokemonCard = ({ pokemon, closer, visible }) => {
 
     let history = useHistory();
     const types = useRef([]);
-    const divBackground = useRef();
+    const divBackground = useRef([]);
     const dispatch = useDispatch()
     const [visibles, setVisibles] = useState(visible);
     const { favorites, catchs } = useSelector(state => state.favoriteReducer);
@@ -35,10 +35,8 @@ const PokemonCard = ({ pokemon, closer, visible }) => {
         checkCatch(favorites, setVisibles, pokemon);
         comporeList();
         checkState(catchs, pokemon, divBackground);
-        checkState(favorites, pokemon, divBackground , favorites);
+        checkState(favorites, pokemon, divBackground, favorites);
     }, [pokemon, favorites, catchs, visible])
-
-    console.log(favorites)
 
     useEffect(() => {
         changeColor(types);
@@ -55,6 +53,7 @@ const PokemonCard = ({ pokemon, closer, visible }) => {
                 visibles={visibles} />
             <div
                 ref={divBackground}
+                /* ref={(element) => { types.current[i] = element }}  */
                 className={`card-container ${darkMode ? "bg-dark-card" : ""}`}
                 onClick={() => history.push({
                     pathname: `/pokemon/${pokemon.name}`,

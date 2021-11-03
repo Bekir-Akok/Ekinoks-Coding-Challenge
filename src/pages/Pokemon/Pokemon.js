@@ -3,7 +3,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineCatchingPokemon } from 'react-icons/md';
 import { changeColor, statsColor, checkCatch, checkState } from '@helpers/helper';
-import { getAbility } from '@redux/actions/action';
+import { getAbility, getPoke } from '@redux/actions/action';
 import { ThemeContext } from "@context/ThemeContext";
 import FavButton from '@components/FavButton'
 import Layout from '@layout';
@@ -14,15 +14,15 @@ const Pokemon = () => {
     const types = useRef([]);
     const stats = useRef([]);
     const divBackground = useRef();
-    const location = useLocation();
+    const locations = useLocation();
     let history = useHistory();
     const dispatch = useDispatch();
-    const { pokemonAbilitys } = useSelector(state => state.pokemonReducer);
+    const { pokemonAbilitys, searchItems, pokemons } = useSelector(state => state.pokemonReducer);
     const { favorites, catchs } = useSelector(state => state.favoriteReducer);
     const [visible, setVisible] = useState(true);
     const theme = useContext(ThemeContext);
     const darkMode = theme.state.darkMode;
-    const pokemon = location.state.pokemon;
+    const pokemon = locations.state.pokemon;
 
     const addToCatch = (pokemon) => {
         const isTrue = catchs.some(element => {
@@ -31,18 +31,18 @@ const Pokemon = () => {
         isTrue
             ? goToCatch()
             : history.push(`/Game/catch/${pokemon.name}`, pokemon)
-    }
+    };
 
     const goToCatch = () => {
         alert('This pokemon has already been added to your catchs.')
         history.push('/favorites/catchs')
-    }
+    };
 
     const combineHandler = () => {
         changeColor(types);
         statsColor(stats);
         dispatch(getAbility(pokemon.abilities[0].ability.url));
-    }
+    };
 
     useEffect(() => {
         combineHandler();
@@ -53,7 +53,16 @@ const Pokemon = () => {
         checkCatch(favorites, setVisible, pokemon);
         checkState(catchs, pokemon, divBackground);
         checkState(favorites, pokemon, divBackground, favorites);
-    }, [pokemon, favorites, catchs, visible])
+    }, [pokemon, favorites, catchs, visible]);
+
+    /*Re-render pokemons*/
+    useEffect(() => {
+        pokemons.length !== searchItems.length
+            ? dispatch(getPoke())
+            : pokemons.length === 0
+                ? dispatch(getPoke())
+                : console.log();
+    }, [])
 
     return (
         <Layout>

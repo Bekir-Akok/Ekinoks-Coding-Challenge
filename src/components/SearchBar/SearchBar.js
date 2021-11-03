@@ -22,7 +22,7 @@ const SearchBar = () => {
 
     useEffect(() => {
         dispatch(searchItems(filteredPokemons))
-    }, [search , pokemons])
+    }, [search, pokemons])
 
     return (
         <div className="search-container">

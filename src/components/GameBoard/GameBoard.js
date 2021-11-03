@@ -1,14 +1,16 @@
-import React, { useState, useContext } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useContext, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Card from "@components/Card";
 import GameOver from "@components/GameOver";
+import { getPoke } from '@redux/actions/action';
 import { ThemeContext } from "@context/ThemeContext";
 
 const GameBoard = ({ location }) => {
 
-    const { searchItems } = useSelector(state => state.pokemonReducer);
+    const { searchItems, pokemons } = useSelector(state => state.pokemonReducer);
     const theme = useContext(ThemeContext);
     const darkMode = theme.state.darkMode;
+    const dispatch = useDispatch();
     /*GameBoard variable */
     const pokeArr = searchItems.slice(6, 12);
     const cloneArr = [...pokeArr];
@@ -29,7 +31,6 @@ const GameBoard = ({ location }) => {
         }
         return array;
     };
-
 
     const [cardList, setCardList] = useState(
         shuffle(mixArr).map((pokemon, index) => {
@@ -95,6 +96,15 @@ const GameBoard = ({ location }) => {
         });
         setGameOver(done);
     };
+
+    /*Re-render pokemons*/
+    useEffect(() => {
+        pokemons.length !== searchItems.length
+            ? dispatch(getPoke())
+            : pokemons.length === 0
+                ? dispatch(getPoke())
+                : console.log();
+    }, [])
 
     return (
         <>

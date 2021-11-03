@@ -7,7 +7,7 @@ const Pagination = ({ pageCount, handlePageClick }) => {
         <div className="pagination-container">
             <ReactPaginate
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
+                pageRangeDisplayed={20}
                 pageCount={pageCount}
                 previousLabel=""
                 nextLabel=""

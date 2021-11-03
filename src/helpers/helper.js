@@ -125,13 +125,13 @@ export const checkCatch = (state, setState, pokemon) => {
 export const checkState = (state, pokemon, ref, favorites) => {
     state === favorites
         ? state.forEach(x =>
-            x.id === pokemon.id
-                ? ref.current.style.backgroundColor = "#acb6fb"
+            x.name === pokemon.name
+                ? ref.current.style.backgroundColor = "#f6c1ce"
                 : console.log()
         )
         : state.forEach(x =>
-            x.id === pokemon.id
-                ? ref.current.style.backgroundColor = "#fe6568"
+            x.name === pokemon.name
+                ? ref.current.style.backgroundColor = "#d1d0e0"
                 : console.log()
         )
 }
