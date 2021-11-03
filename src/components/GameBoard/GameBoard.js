@@ -14,7 +14,7 @@ const GameBoard = ({ location }) => {
     const cloneArr = [...pokeArr];
     const mixArr = pokeArr.concat(cloneArr);
     const [flippedCards, setFlippedCards] = useState([]);
-    const [gameOver, setGameOver] = useState(true);
+    const [gameOver, setGameOver] = useState(false);
 
     const shuffle = array => {
         let currentIndex = array.length,
