@@ -15,7 +15,7 @@ const Closer = ({ pokemon, closer }) => {
             ? dispatch(removeToFav(pokemon))
             : dispatch(removeToCatch(pokemon))
     }
-
+//dsömdsmdömsa
     return (
         <>
             {
